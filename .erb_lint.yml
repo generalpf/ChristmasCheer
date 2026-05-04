@@ -1,0 +1,39 @@
+---
+EnableDefaultLinters: true
+linters:
+  AllowedScriptType:
+    enabled: true
+    allowed_types:
+      - "application/ld+json"
+      - "module"
+      - "text/javascript"
+      - "text/x-template"
+  ErbSafety:
+    enabled: true
+  FinalNewline:
+    enabled: true
+  ParserErrors:
+    enabled: true
+  Rubocop:
+    enabled: true
+    rubocop_config:
+      inherit_from:
+        - .rubocop.yml
+      AllCops:
+        TargetRubyVersion: 3.4
+      # ERB ruby fragments are not standalone files; suppress layout cops
+      # whose semantics don't translate.
+      Layout/TrailingEmptyLines:
+        Enabled: false
+      Layout/TrailingWhitespace:
+        Enabled: false
+      Style/FrozenStringLiteralComment:
+        Enabled: false
+  SpaceAroundErbTag:
+    enabled: true
+  SpaceIndentation:
+    enabled: true
+  SpaceInHtmlTag:
+    enabled: true
+  TrailingWhitespace:
+    enabled: true
