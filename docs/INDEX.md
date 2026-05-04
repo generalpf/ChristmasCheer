@@ -10,3 +10,4 @@ image004.png is the donor/donation UI. "Donor Contact List is the main form.  Do
 
 What I haven't been able to figure out in Access is how to report on one-time vs repeat donors.  My workaround is to run the query in Access, export it to Excel, then write the formulas to do the analysis."
 
+image005.png is the tax receipt design view. "The tax receipt is triggered after the Deposit Date field loses focus.  If there is an address in the Email field in the Donor form, Outlook opens a populated email with the tax receipt attached.  I add a message (usually a copy and paste) and send.  If there is no tax receipt, then the tax receipt is automatically printed.  When I am done a session, I merge those donors with a letter template in Word and mail the receipts."
