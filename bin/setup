@@ -12,6 +12,30 @@ def abort!(message)
   exit 1
 end
 
+def check_ruby!
+  pinned = File.read(File.join(APP_ROOT, ".ruby-version")).strip.delete_prefix("ruby-")
+  return if RUBY_VERSION == pinned
+
+  abort! <<~MSG
+    Ruby #{pinned} is required, but bin/setup is running under #{RUBY_VERSION}.
+    Install and activate the pinned version (a version manager will pick it up
+    automatically from .ruby-version):
+      asdf:  asdf install ruby #{pinned} && asdf set ruby #{pinned}
+      mise:  mise use ruby@#{pinned}
+      rbenv: rbenv install #{pinned}
+  MSG
+end
+
+def check_bundler!
+  return if system("command -v bundle >/dev/null 2>&1")
+
+  abort! <<~MSG
+    Bundler is not installed for Ruby #{RUBY_VERSION}.
+    Install it before continuing:
+      gem install bundler
+  MSG
+end
+
 def check_postgres!
   unless system("command -v psql >/dev/null 2>&1")
     abort! <<~MSG
@@ -42,7 +66,13 @@ FileUtils.chdir APP_ROOT do
   # This script is idempotent, so that you can run it at any time and get an expectable outcome.
   # Add necessary setup steps to this file.
 
-  puts "== Checking PostgreSQL =="
+  puts "== Checking Ruby =="
+  check_ruby!
+
+  puts "\n== Checking Bundler =="
+  check_bundler!
+
+  puts "\n== Checking PostgreSQL =="
   check_postgres!
 
   puts "\n== Installing dependencies =="
