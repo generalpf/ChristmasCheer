@@ -36,10 +36,10 @@
 - [x] 5.2 Configure the job to use the pinned Ruby version via `ruby/setup-ruby@v1` with bundler caching
 - [x] 5.3 Add a `services:` block running `postgres:16` with a healthcheck and matching `DATABASE_URL` env var
 - [x] 5.4 Run `bin/rails db:prepare` and `bin/rails test` as the workflow steps
-- [ ] 5.5 Push the workflow and confirm a green run on the PR/branch
+- [x] 5.5 Push the workflow and confirm a green run on the PR/branch
 
 ## 6. Documentation
 
 - [x] 6.1 Replace any auto-generated `README.md` with one that covers: project background (link to `docs/INDEX.md`), Ruby install, Postgres install, `bin/setup`, seed env vars, `bin/rails server`, and how to run tests
 - [x] 6.2 Note that follow-on OpenSpec changes (`openspec/changes/`) cover donor schema, importer, and reporting
-- [ ] 6.3 Verify a fresh contributor can follow the README on a clean machine and reach a running server
+- [x] 6.3 Verify a fresh contributor can follow the README on a clean machine and reach a running server
