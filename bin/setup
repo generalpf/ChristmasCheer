@@ -13,11 +13,12 @@ def abort!(message)
 end
 
 def check_postgres!
-  unless system("which -s psql")
+  unless system("command -v psql >/dev/null 2>&1")
     abort! <<~MSG
       psql is not installed or not on PATH.
       Install PostgreSQL 14+ before continuing:
-        macOS (Homebrew): brew install postgresql@16 && brew services start postgresql@16
+        macOS (Homebrew):  brew install postgresql@16 && brew services start postgresql@16
+        Debian/Raspbian:   sudo apt install postgresql postgresql-client
         Or download Postgres.app from https://postgresapp.com/
     MSG
   end
@@ -29,7 +30,9 @@ def check_postgres!
   unless system(*pg_isready_args)
     abort! <<~MSG
       PostgreSQL is not reachable at #{host || "the local socket"}:#{port}.
-      Start it (e.g. `brew services start postgresql@16`) and rerun bin/setup.
+      Start it and rerun bin/setup:
+        macOS (Homebrew):  brew services start postgresql@16
+        Debian/Raspbian:   sudo systemctl start postgresql
     MSG
   end
 end
