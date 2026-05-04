@@ -1,0 +1,55 @@
+# PostgreSQL. Versions 14 and up are supported.
+#
+# All connection settings read from environment variables. In development the
+# defaults assume a local PostgreSQL server reachable on the Unix socket as the
+# current OS user (the Homebrew/Postgres.app default on macOS).
+#
+# To override locally, set any of:
+#   DATABASE_URL                  Full connection URL (takes precedence over discrete vars)
+#   POSTGRES_HOST                 Defaults to unset (local socket)
+#   POSTGRES_PORT                 Defaults to 5432
+#   POSTGRES_USER                 Defaults to the OS user
+#   POSTGRES_PASSWORD             Defaults to unset
+#
+# In production, set DATABASE_URL (and the non-primary *_DATABASE_URL vars) or
+# the discrete env vars below. No credentials are hard-coded.
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  max_connections: <%= ENV.fetch("RAILS_MAX_THREADS", 5) %>
+  host: <%= ENV["POSTGRES_HOST"] %>
+  port: <%= ENV.fetch("POSTGRES_PORT", 5432) %>
+  username: <%= ENV["POSTGRES_USER"] %>
+  password: <%= ENV["POSTGRES_PASSWORD"] %>
+
+development:
+  <<: *default
+  database: <%= ENV.fetch("POSTGRES_DEVELOPMENT_DATABASE", "christmas_cheer_development") %>
+
+# Warning: The database defined as "test" will be erased and re-generated from
+# your development database when you run "rake". Do not set this db to the same
+# as development or production.
+test:
+  <<: *default
+  database: <%= ENV.fetch("POSTGRES_TEST_DATABASE", "christmas_cheer_test") %>
+
+production:
+  primary: &primary_production
+    <<: *default
+    url: <%= ENV["DATABASE_URL"] %>
+    database: <%= ENV.fetch("POSTGRES_DATABASE", "christmas_cheer_production") %>
+  cache:
+    <<: *primary_production
+    url: <%= ENV["CACHE_DATABASE_URL"] || ENV["DATABASE_URL"] %>
+    database: <%= ENV.fetch("POSTGRES_CACHE_DATABASE", "christmas_cheer_production_cache") %>
+    migrations_paths: db/cache_migrate
+  queue:
+    <<: *primary_production
+    url: <%= ENV["QUEUE_DATABASE_URL"] || ENV["DATABASE_URL"] %>
+    database: <%= ENV.fetch("POSTGRES_QUEUE_DATABASE", "christmas_cheer_production_queue") %>
+    migrations_paths: db/queue_migrate
+  cable:
+    <<: *primary_production
+    url: <%= ENV["CABLE_DATABASE_URL"] || ENV["DATABASE_URL"] %>
+    database: <%= ENV.fetch("POSTGRES_CABLE_DATABASE", "christmas_cheer_production_cable") %>
+    migrations_paths: db/cable_migrate
