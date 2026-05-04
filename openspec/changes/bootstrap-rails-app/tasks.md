@@ -10,7 +10,7 @@
 - [x] 2.2 Verify the generated `Gemfile` locks Rails to an `~> 8.0` version and that `propshaft`, `importmap-rails`, `turbo-rails`, `stimulus-rails`, `solid_queue`, `solid_cache`, and `solid_cable` are all present
 - [x] 2.3 Confirm no alternative gems were pulled in (no `sprockets-rails`, `sidekiq`, `redis`, `webpacker`)
 - [x] 2.4 Update `.gitignore` so `.bundle/`, `tmp/`, `log/`, `storage/`, and `.byebug_history` are ignored without clobbering existing entries
-- [ ] 2.5 Commit the bootstrap as a single, reviewable commit
+- [x] 2.5 Commit the bootstrap as a single, reviewable commit
 
 ## 3. Configure PostgreSQL
 
