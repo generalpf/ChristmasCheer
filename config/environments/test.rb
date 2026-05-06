@@ -50,4 +50,10 @@ Rails.application.configure do
 
   # Raise error when a before_action's only/except options reference missing actions.
   config.action_controller.raise_on_missing_callback_actions = true
+
+  # Skip Rails' fixture FK pre-validation. The default mechanism issues
+  # `UPDATE pg_catalog.pg_constraint`, which requires PostgreSQL superuser —
+  # fine on a Homebrew dev box, broken on a VPS where the app role is an
+  # ordinary user. FK constraints still exist and are enforced at runtime.
+  config.active_record.verify_foreign_keys_for_fixtures = false
 end
