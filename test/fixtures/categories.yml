@@ -1,0 +1,23 @@
+business:
+  id: 1
+  name: Business
+
+government:
+  id: 2
+  name: Government
+
+group_organization:
+  id: 3
+  name: "Group/Organization"
+
+individual:
+  id: 4
+  name: Individual
+
+other:
+  id: 5
+  name: "Other (Specify in Notes)"
+
+void_receipt:
+  id: 6
+  name: "VOID Receipt"

@@ -1,0 +1,43 @@
+dr:
+  id: 1
+  title: "Dr."
+
+dr_and_mrs:
+  id: 2
+  title: "Dr. & Mrs."
+
+fr:
+  id: 3
+  title: "Fr."
+
+minister:
+  id: 4
+  title: "Minister"
+
+miss:
+  id: 5
+  title: "Miss"
+
+mr:
+  id: 6
+  title: "Mr."
+
+mr_and_mrs:
+  id: 7
+  title: "Mr. & Mrs."
+
+mrs:
+  id: 8
+  title: "Mrs."
+
+ms:
+  id: 9
+  title: "Ms."
+
+to_whom:
+  id: 10
+  title: "To Whom It May Concern"
+
+none:
+  id: 11
+  title: "None"

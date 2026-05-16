@@ -1,0 +1,2 @@
+class CourtesyTitle < ApplicationRecord
+end

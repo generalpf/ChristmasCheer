@@ -1,0 +1,27 @@
+boissevain_cc:
+  id: 1
+  name: BoissevainCC
+
+brandon_cc:
+  id: 2
+  name: BrandonCC
+
+deloraine_cc:
+  id: 3
+  name: DeloraineCC
+
+eos_cc:
+  id: 4
+  name: EOS_CC
+
+melita_cc:
+  id: 5
+  name: MelitaCC
+
+rivers_cc:
+  id: 6
+  name: RiversCC
+
+virden_cc:
+  id: 7
+  name: VirdenCC

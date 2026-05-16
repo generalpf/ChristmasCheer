@@ -1,0 +1,35 @@
+anonymous:
+  id: 1
+  name: Anonymous
+
+business_name:
+  id: 2
+  name: "Business Name"
+
+canadian_tire_customers:
+  id: 3
+  name: "Canadian Tire Customers"
+
+fill_bus_safeway:
+  id: 4
+  name: "Fill the Bus-Safeway Customers"
+
+fill_bus_sobeys:
+  id: 5
+  name: "Fill the Bus-Sobeys West Customers"
+
+name_as_written:
+  id: 6
+  name: "Name as Written"
+
+none:
+  id: 7
+  name: None
+
+other:
+  id: 8
+  name: "Other (Specify in Message)"
+
+uct_bingo_players:
+  id: 9
+  name: "UCT Bingo Players"

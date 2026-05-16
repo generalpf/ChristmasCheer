@@ -1,0 +1,63 @@
+deloraine_cc:
+  id: 1
+  name: DeloraineCC
+
+benevity:
+  id: 2
+  name: Benevity
+
+canada_helps:
+  id: 3
+  name: CanadaHelps
+
+canadian_tire:
+  id: 4
+  name: "Canadian Tire"
+
+cc_office:
+  id: 5
+  name: "CC Office"
+
+e_transfer:
+  id: 6
+  name: "e-Transfer"
+
+fill_the_bus:
+  id: 7
+  name: "Fill the Bus"
+
+mail:
+  id: 8
+  name: Mail
+
+other:
+  id: 9
+  name: "Other (Specify in Notes)"
+
+paypal:
+  id: 10
+  name: PayPal
+
+uct_bingo:
+  id: 11
+  name: "UCT Bingo"
+
+boissevain_cc:
+  id: 12
+  name: BoissevainCC
+
+melita_cc:
+  id: 13
+  name: MelitaCC
+
+rivers_cc:
+  id: 14
+  name: RiversCC
+
+eos_cc:
+  id: 15
+  name: EOS_CC
+
+virden_cc:
+  id: 16
+  name: VirdenCC

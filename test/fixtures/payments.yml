@@ -1,0 +1,27 @@
+cash:
+  id: 1
+  name: Cash
+
+cheque:
+  id: 2
+  name: Cheque
+
+eft:
+  id: 3
+  name: EFT
+
+gift_card:
+  id: 4
+  name: "Gift Card"
+
+gift_in_kind:
+  id: 5
+  name: "Gift in Kind"
+
+other:
+  id: 6
+  name: "Other (Specify in Notes)"
+
+square:
+  id: 7
+  name: Square
