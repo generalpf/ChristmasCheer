@@ -1,3 +1,12 @@
 <h1>Christmas Cheer</h1>
-<p>Signed in as <%= Current.user.email_address %>.</p>
+<p class="signed-in-as">Signed in as <%= Current.user.email_address %>.</p>
+
+<nav class="main-menu" aria-label="Main menu">
+  <ul>
+    <li class="menu-item menu-item--placeholder">
+      <span aria-disabled="true" class="menu-item__label">future: donors</span>
+    </li>
+  </ul>
+</nav>
+
 <%= button_to "Sign out", session_path, method: :delete %>

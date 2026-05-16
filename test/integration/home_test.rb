@@ -13,6 +13,18 @@ class HomeTest < ActionDispatch::IntegrationTest
     assert_select "h1", text: "Christmas Cheer"
   end
 
+  test "authenticated GET / renders the menu with a disabled donors placeholder" do
+    sign_in_as users(:one)
+    get root_path
+
+    assert_response :success
+    assert_includes response.body, "future: donors"
+    assert_select "a", text: /future: donors/, count: 0
+    assert_select "form[action=?][method=?]", session_path, "post" do
+      assert_select "input[name=_method][value=delete]"
+    end
+  end
+
   test "no public sign-up route exists" do
     assert_raises(ActionController::RoutingError) do
       Rails.application.routes.recognize_path("/users/new", method: :get)

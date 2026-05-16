@@ -63,11 +63,19 @@ FROM base
 # Run and own only the runtime files as a non-root user for security
 RUN groupadd --system --gid 1000 rails && \
     useradd rails --uid 1000 --gid 1000 --create-home --shell /bin/bash
-USER 1000:1000
 
 # Copy built artifacts: gems, application
 COPY --chown=rails:rails --from=build "${BUNDLE_PATH}" "${BUNDLE_PATH}"
 COPY --chown=rails:rails --from=build /rails /rails
+
+# Bake the Git commit SHA the image was built from into the image so the
+# running app can display it. Passed by Kamal via builder.args; see config/deploy.yml.
+ARG GIT_COMMIT_SHA=""
+ENV GIT_COMMIT_SHA=$GIT_COMMIT_SHA
+RUN printf '%s\n' "$GIT_COMMIT_SHA" > /rails/REVISION && \
+    chown rails:rails /rails/REVISION
+
+USER 1000:1000
 
 # Entrypoint prepares the database.
 ENTRYPOINT ["/rails/bin/docker-entrypoint"]

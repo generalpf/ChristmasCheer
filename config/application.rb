@@ -23,5 +23,7 @@ module ChristmasCheer
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    config.x.github_repo_url = "https://github.com/generalpf/ChristmasCheer"
   end
 end

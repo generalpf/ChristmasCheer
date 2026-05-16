@@ -80,6 +80,12 @@ asset_path: /rails/public/assets
 builder:
   arch: amd64
 
+  # Bake the Git commit SHA from the working tree into the image so the
+  # running app can display its build provenance in the footer. The Dockerfile
+  # reads this ARG and writes it to /rails/REVISION.
+  args:
+    GIT_COMMIT_SHA: <%= %x(git rev-parse HEAD).strip %>
+
   # # Build image via remote server (useful for faster amd64 builds on arm64 computers)
   # remote: ssh://docker@docker-builder-server
   #
