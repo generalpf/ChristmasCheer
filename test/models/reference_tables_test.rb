@@ -16,8 +16,8 @@ class ReferenceTablesTest < ActiveSupport::TestCase
   test "categories has 6 rows in Access order" do
     assert_equal 6, Category.count
     assert_equal(
-      ["Business", "Government", "Group/Organization", "Individual",
-       "Other (Specify in Notes)", "VOID Receipt"],
+      [ "Business", "Government", "Group/Organization", "Individual",
+        "Other (Specify in Notes)", "VOID Receipt" ],
       Category.order(:id).pluck(:name)
     )
   end
@@ -29,8 +29,8 @@ class ReferenceTablesTest < ActiveSupport::TestCase
   test "courtesy_titles has 11 rows in Access order" do
     assert_equal 11, CourtesyTitle.count
     assert_equal(
-      ["Dr.", "Dr. & Mrs.", "Fr.", "Minister", "Miss", "Mr.", "Mr. & Mrs.",
-       "Mrs.", "Ms.", "To Whom It May Concern", "None"],
+      [ "Dr.", "Dr. & Mrs.", "Fr.", "Minister", "Miss", "Mr.", "Mr. & Mrs.",
+        "Mrs.", "Ms.", "To Whom It May Concern", "None" ],
       CourtesyTitle.order(:id).pluck(:title)
     )
   end
@@ -42,8 +42,8 @@ class ReferenceTablesTest < ActiveSupport::TestCase
   test "payments has 7 rows in Access order" do
     assert_equal 7, Payment.count
     assert_equal(
-      ["Cash", "Cheque", "EFT", "Gift Card", "Gift in Kind",
-       "Other (Specify in Notes)", "Square"],
+      [  "Cash", "Cheque", "EFT", "Gift Card", "Gift in Kind",
+        "Other (Specify in Notes)", "Square" ],
       Payment.order(:id).pluck(:name)
     )
   end
@@ -55,9 +55,9 @@ class ReferenceTablesTest < ActiveSupport::TestCase
   test "publications has 9 rows in Access order" do
     assert_equal 9, Publication.count
     assert_equal(
-      ["Anonymous", "Business Name", "Canadian Tire Customers",
-       "Fill the Bus-Safeway Customers", "Fill the Bus-Sobeys West Customers",
-       "Name as Written", "None", "Other (Specify in Message)", "UCT Bingo Players"],
+      [ "Anonymous", "Business Name", "Canadian Tire Customers",
+        "Fill the Bus-Safeway Customers", "Fill the Bus-Sobeys West Customers",
+        "Name as Written", "None", "Other (Specify in Message)", "UCT Bingo Players" ],
       Publication.order(:id).pluck(:name)
     )
   end
@@ -69,9 +69,9 @@ class ReferenceTablesTest < ActiveSupport::TestCase
   test "sources has 16 rows in Access order" do
     assert_equal 16, Source.count
     assert_equal(
-      ["DeloraineCC", "Benevity", "CanadaHelps", "Canadian Tire", "CC Office",
-       "e-Transfer", "Fill the Bus", "Mail", "Other (Specify in Notes)", "PayPal",
-       "UCT Bingo", "BoissevainCC", "MelitaCC", "RiversCC", "EOS_CC", "VirdenCC"],
+      [ "DeloraineCC", "Benevity", "CanadaHelps", "Canadian Tire", "CC Office",
+        "e-Transfer", "Fill the Bus", "Mail", "Other (Specify in Notes)", "PayPal",
+        "UCT Bingo", "BoissevainCC", "MelitaCC", "RiversCC", "EOS_CC", "VirdenCC" ],
       Source.order(:id).pluck(:name)
     )
   end
