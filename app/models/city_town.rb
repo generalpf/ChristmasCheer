@@ -1,3 +1,3 @@
-class CourtesyTitle < ApplicationRecord
+class CityTown < ApplicationRecord
   has_many :donors, dependent: :restrict_with_exception
 end

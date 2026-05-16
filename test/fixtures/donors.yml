@@ -1,0 +1,72 @@
+acme_business:
+  id: 1
+  affiliate_id: 2   # brandon_cc
+  category_id: 1    # business
+  courtesy_title_id: 10  # to_whom
+  city_town_id: 1   # brandon
+  company: Acme Widgets Ltd.
+  email1: receipts@acme.example
+  address_line1: 100 Industrial Dr.
+  province: MB
+  postal_code: R7A 0A1
+
+city_of_brandon:
+  id: 2
+  affiliate_id: 2
+  category_id: 2    # government
+  courtesy_title_id: 10
+  city_town_id: 1
+  company: City of Brandon
+  address_line1: 410 9th St.
+  province: MB
+  postal_code: R7A 6A2
+
+rotary_club:
+  id: 3
+  affiliate_id: 3   # deloraine_cc
+  category_id: 3    # group_organization
+  courtesy_title_id: 10
+  city_town_id: 2   # deloraine
+  company: Rotary Club of Deloraine
+  province: MB
+  postal_code: R0M 0M0
+
+jane_smith:
+  id: 4
+  affiliate_id: 2
+  category_id: 4    # individual
+  courtesy_title_id: 9   # ms
+  city_town_id: 1
+  first_name: Jane
+  last_name: Smith
+  address_line1: 25 Maple St.
+  province: MB
+  postal_code: R7A 0B2
+  email1: jane@example.com
+
+john_no_city:
+  id: 5
+  affiliate_id: 7   # virden_cc
+  category_id: 4
+  courtesy_title_id: 6   # mr
+  city_town_id: null
+  first_name: John
+  last_name: Doe
+  notes: Donor with no recorded city/town
+
+oddball_other:
+  id: 6
+  affiliate_id: 6   # rivers_cc
+  category_id: 5    # other
+  courtesy_title_id: 11  # none
+  city_town_id: 3   # virden
+  first_name: Anonymous
+  notes: See Source notes for context
+
+void_record:
+  id: 7
+  affiliate_id: 2
+  category_id: 6    # void_receipt
+  courtesy_title_id: 10
+  city_town_id: 1
+  notes: Receipt voided

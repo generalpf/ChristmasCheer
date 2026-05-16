@@ -89,6 +89,11 @@ seed_reference_table Publication, [
   { id: 9, name: "UCT Bingo Players" }
 ]
 
+# TODO: city_towns seed — Access `CityTownT` row list pending. When supplied, add an
+# idempotent seed block here (explicit IDs via `upsert_all`, sequence reset after),
+# mirroring the pattern used for the other reference tables. Tracked in the
+# `add-donors-table` change; the table exists but is intentionally empty for now.
+
 seed_reference_table Source, [
   { id: 1,  name: "DeloraineCC" },
   { id: 2,  name: "Benevity" },

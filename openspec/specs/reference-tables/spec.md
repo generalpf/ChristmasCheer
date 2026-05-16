@@ -1,6 +1,8 @@
 # reference-tables
 
-Six read-mostly lookup tables that donor and donation records will reference by integer foreign key, seeded with exact values from the Access source database.
+## Purpose
+
+Six read-mostly lookup tables that donor and donation records reference by integer foreign key (seeded with exact values from the Access source database), plus a seventh `city_towns` table created without seed data for the donors FK to depend on.
 
 ## Requirements
 
@@ -87,6 +89,25 @@ The database SHALL contain a `sources` table with columns `id` (integer primary 
 
 - **WHEN** `Source.find(8)` is called
 - **THEN** it returns the record with `name == "Mail"`
+
+### Requirement: city_towns table exists
+
+The database SHALL contain a `city_towns` table with columns `id` (integer primary key) and `name` (string, not null). Seeding the table with the Access `CityTownT` rows is deferred to a follow-up change; this requirement is satisfied by the table's existence and shape.
+
+#### Scenario: city_towns table is queryable
+
+- **WHEN** the application runs `CityTown.connection.table_exists?("city_towns")`
+- **THEN** the result is `true`
+
+#### Scenario: city_towns has the expected columns
+
+- **WHEN** the application runs `CityTown.columns.map(&:name).sort`
+- **THEN** the result is `["id", "name"]`
+
+#### Scenario: name is required
+
+- **WHEN** the application attempts to insert a `city_towns` row with `name = NULL`
+- **THEN** the database raises a NOT NULL violation
 
 ### Requirement: Reference table seeds are idempotent
 
