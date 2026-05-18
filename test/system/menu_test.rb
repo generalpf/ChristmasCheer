@@ -11,8 +11,8 @@ class MenuTest < ApplicationSystemTestCase
 
     assert_current_path root_path
     assert_selector "h1", text: "Christmas Cheer"
-    assert_selector ".menu-item--placeholder", text: "future: donors"
-    refute_selector "a", text: "future: donors"
+    assert_link "Donors", href: donors_path
+    refute_text "future: donors"
 
     within "footer.app-footer" do
       assert_text "Build"

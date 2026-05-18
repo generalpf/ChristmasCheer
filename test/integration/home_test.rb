@@ -13,13 +13,13 @@ class HomeTest < ActionDispatch::IntegrationTest
     assert_select "h1", text: "Christmas Cheer"
   end
 
-  test "authenticated GET / renders the menu with a disabled donors placeholder" do
+  test "authenticated GET / renders the menu with a donors link and a sign-out form" do
     sign_in_as users(:one)
     get root_path
 
     assert_response :success
-    assert_includes response.body, "future: donors"
-    assert_select "a", text: /future: donors/, count: 0
+    assert_select "a[href=?]", donors_path, text: "Donors"
+    assert_no_match(/future: donors/, response.body)
     assert_select "form[action=?][method=?]", session_path, "post" do
       assert_select "input[name=_method][value=delete]"
     end

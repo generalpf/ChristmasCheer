@@ -1,0 +1,101 @@
+<%= form_with model: donor, local: true, class: "donor-form" do |f| %>
+  <% if donor.errors.any? %>
+    <div class="donor-form__errors">
+      <h2><%= pluralize(donor.errors.count, "error") %> prevented this donor from being saved:</h2>
+      <ul>
+        <% donor.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :courtesy_title_id, "Courtesy title" %>
+    <%= f.collection_select :courtesy_title_id, @courtesy_titles, :id, :title %>
+  </div>
+
+  <div class="field">
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :spouse %>
+    <%= f.text_field :spouse %>
+  </div>
+
+  <div class="field">
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :job_title %>
+    <%= f.text_field :job_title %>
+  </div>
+
+  <div class="field">
+    <%= f.label :company %>
+    <%= f.text_field :company %>
+  </div>
+
+  <div class="field">
+    <%= f.label :affiliate_id, "Affiliate" %>
+    <%= f.collection_select :affiliate_id, @affiliates, :id, :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :category_id, "Category" %>
+    <%= f.collection_select :category_id, @categories, :id, :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :city_town_id, "City/town" %>
+    <%= f.collection_select :city_town_id, @city_towns, :id, :name, include_blank: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :address_line1, "Address line 1" %>
+    <%= f.text_field :address_line1 %>
+  </div>
+
+  <div class="field">
+    <%= f.label :address_line2, "Address line 2" %>
+    <%= f.text_field :address_line2 %>
+  </div>
+
+  <div class="field">
+    <%= f.label :province %>
+    <%= f.text_field :province %>
+  </div>
+
+  <div class="field">
+    <%= f.label :postal_code, "Postal code" %>
+    <%= f.text_field :postal_code %>
+  </div>
+
+  <div class="field">
+    <%= f.label :phone %>
+    <%= f.text_field :phone %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email1, "Email 1" %>
+    <%= f.email_field :email1 %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email2, "Email 2" %>
+    <%= f.email_field :email2 %>
+  </div>
+
+  <div class="field">
+    <%= f.label :notes %>
+    <%= f.text_area :notes, rows: 4 %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,35 @@
+<h1>
+  <%= [ @donor.courtesy_title.title, @donor.first_name, @donor.last_name ].compact_blank.join(" ").presence ||
+      @donor.company.presence ||
+      "Donor ##{@donor.id}" %>
+</h1>
+
+<p>
+  <%= link_to "Edit", edit_donor_path(@donor) %> |
+  <%= button_to "Delete", donor_path(@donor), method: :delete,
+        data: { turbo_confirm: "Delete this donor? This cannot be undone." } %> |
+  <%= link_to "Back to donors", donors_path %>
+</p>
+
+<dl class="donor-detail">
+  <dt>Courtesy title</dt><dd><%= @donor.courtesy_title.title %></dd>
+  <dt>First name</dt><dd><%= @donor.first_name %></dd>
+  <dt>Spouse</dt><dd><%= @donor.spouse %></dd>
+  <dt>Last name</dt><dd><%= @donor.last_name %></dd>
+  <dt>Job title</dt><dd><%= @donor.job_title %></dd>
+  <dt>Company</dt><dd><%= @donor.company %></dd>
+  <dt>Affiliate</dt><dd><%= @donor.affiliate.name %></dd>
+  <dt>Category</dt><dd><%= @donor.category.name %></dd>
+  <dt>City/town</dt><dd><%= @donor.city_town&.name %></dd>
+  <dt>Address line 1</dt><dd><%= @donor.address_line1 %></dd>
+  <dt>Address line 2</dt><dd><%= @donor.address_line2 %></dd>
+  <dt>Province</dt><dd><%= @donor.province %></dd>
+  <dt>Postal code</dt><dd><%= @donor.postal_code %></dd>
+  <% if @donor.zip_code.present? %>
+    <dt>Legacy ZIP (read-only)</dt><dd><%= @donor.zip_code %></dd>
+  <% end %>
+  <dt>Phone</dt><dd><%= @donor.phone %></dd>
+  <dt>Email 1</dt><dd><%= @donor.email1 %></dd>
+  <dt>Email 2</dt><dd><%= @donor.email2 %></dd>
+  <dt>Notes</dt><dd><%= simple_format @donor.notes %></dd>
+</dl>

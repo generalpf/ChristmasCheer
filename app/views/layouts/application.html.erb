@@ -24,6 +24,9 @@
   </head>
 
   <body>
+    <% flash.each do |level, message| %>
+      <p class="flash flash--<%= level %>"><%= message %></p>
+    <% end %>
     <%= yield %>
     <%= render "layouts/footer" %>
   </body>

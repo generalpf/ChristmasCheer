@@ -1,0 +1,57 @@
+<h1>Donors</h1>
+
+<p><%= link_to "Back to menu", root_path %></p>
+
+<%= form_with url: donors_path, method: :get, local: true, class: "donors-search" do |f| %>
+  <%= f.label :q, "Search last name or company" %>
+  <%= f.search_field :q, value: @q %>
+  <%= f.submit "Search" %>
+  <% if @q.present? %>
+    <%= link_to "Clear", donors_path %>
+  <% end %>
+<% end %>
+
+<p><%= link_to "New donor", new_donor_path %></p>
+
+<% if @donors.empty? %>
+  <p>No donors found<%= " matching #{@q.inspect}" if @q.present? %>.</p>
+<% else %>
+  <table class="donors-list">
+    <thead>
+      <tr>
+        <th>Last name</th>
+        <th>First name</th>
+        <th>Company</th>
+        <th>City/town</th>
+        <th>Affiliate</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @donors.each do |donor| %>
+        <tr>
+          <td><%= donor.last_name %></td>
+          <td><%= donor.first_name %></td>
+          <td><%= donor.company %></td>
+          <td><%= donor.city_town&.name %></td>
+          <td><%= donor.affiliate.name %></td>
+          <td><%= link_to "View", donor_path(donor) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+
+<nav class="donors-pagination" aria-label="Donor pages">
+  <% if @page > 1 %>
+    <%= link_to "Previous", donors_path(q: @q.presence, page: @page - 1), rel: "prev" %>
+  <% else %>
+    <span class="disabled">Previous</span>
+  <% end %>
+  <span>Page <%= @page %> of <%= @total_pages %></span>
+  <% if @page < @total_pages %>
+    <%= link_to "Next", donors_path(q: @q.presence, page: @page + 1), rel: "next" %>
+  <% else %>
+    <span class="disabled">Next</span>
+  <% end %>
+</nav>

@@ -51,4 +51,47 @@ class DonorTest < ActiveSupport::TestCase
     donor.city_town_id = 9999
     assert_raises(ActiveRecord::InvalidForeignKey) { donor.save(validate: false) }
   end
+
+  test "invalid when first_name, last_name, and company are all blank" do
+    donor = build_donor
+    assert_not donor.valid?
+    assert_includes donor.errors[:base], "must have both a first and last name, or a company"
+  end
+
+  test "invalid with only a first name" do
+    donor = build_donor(first_name: "Pat")
+    assert_not donor.valid?
+    assert_includes donor.errors[:base], "must have both a first and last name, or a company"
+  end
+
+  test "invalid with only a last name" do
+    donor = build_donor(last_name: "Lee")
+    assert_not donor.valid?
+    assert_includes donor.errors[:base], "must have both a first and last name, or a company"
+  end
+
+  test "valid with first and last name together" do
+    assert build_donor(first_name: "Pat", last_name: "Lee").valid?
+  end
+
+  test "valid with company alone" do
+    assert build_donor(company: "Acme Co").valid?
+  end
+
+  test "valid with first, last, and company all set" do
+    assert build_donor(first_name: "Pat", last_name: "Lee", company: "Lee Holdings").valid?
+  end
+
+  test "previously valid fixture donor remains valid" do
+    assert donors(:jane_smith).reload.valid?
+  end
+
+  private
+    def build_donor(**attrs)
+      Donor.new({
+        affiliate: affiliates(:brandon_cc),
+        category: categories(:individual),
+        courtesy_title: courtesy_titles(:mr)
+      }.merge(attrs))
+    end
 end
