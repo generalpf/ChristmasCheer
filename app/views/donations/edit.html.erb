@@ -1,0 +1,10 @@
+<h1>Edit donation</h1>
+
+<%= render "form", donation: @donation,
+      form_url: donation_path(@donation),
+      show_donor_select: true %>
+
+<p>
+  <%= link_to "Back to donation", donation_path(@donation) %> |
+  <%= link_to "Back to donations", donations_path %>
+</p>

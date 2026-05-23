@@ -1,0 +1,34 @@
+<h1>
+  <%= number_to_currency(@donation.amount, unit: "$") %>
+  to
+  <%= link_to donor_display_name(@donation.donor), donor_path(@donation.donor) %>
+</h1>
+
+<p>
+  <%= link_to "Edit", edit_donation_path(@donation) %> |
+  <%= button_to "Delete", donation_path(@donation), method: :delete,
+        data: { turbo_confirm: "Delete this donation? This cannot be undone." } %> |
+  <%= link_to "Back to donations", donations_path %> |
+  <%= link_to "Back to #{donor_display_name(@donation.donor)}'s donations",
+        donor_donations_path(@donation.donor) %>
+</p>
+
+<dl class="donation-detail">
+  <dt>Amount</dt><dd><%= number_to_currency(@donation.amount, unit: "$") %></dd>
+  <dt>Eligible amount</dt><dd><%= number_to_currency(@donation.eligible_amount, unit: "$") %></dd>
+  <dt>Donation date</dt><dd><%= @donation.donation_date %></dd>
+  <dt>Receipt date</dt><dd><%= @donation.receipt_date %></dd>
+  <dt>Deposit date</dt><dd><%= @donation.deposit_date %></dd>
+  <dt>Receipt number (current)</dt><dd><%= @donation.c_receipt_num || "—" %></dd>
+  <dt>Receipt number</dt><dd><%= @donation.receipt_num.presence || "—" %></dd>
+  <dt>Transaction reference</dt><dd><%= @donation.transaction_reference.presence || "—" %></dd>
+  <dt>Message</dt><dd><%= @donation.message.presence || "—" %></dd>
+  <dt>Receipt required</dt><dd><%= @donation.receipt_required ? "yes" : "no" %></dd>
+  <dt>Receipt pending</dt><dd><%= @donation.receipt_pending ? "yes" : "no" %></dd>
+  <dt>Receipt processed</dt><dd><%= @donation.receipt_processed ? "yes" : "no" %></dd>
+  <dt>Receipt replaced</dt><dd><%= @donation.receipt_replaced ? "yes" : "no" %></dd>
+  <dt>Source ID (deferred FK)</dt><dd><%= @donation.source_id || "—" %></dd>
+  <dt>Payment ID (deferred FK)</dt><dd><%= @donation.payment_id || "—" %></dd>
+  <dt>Publication ID (deferred FK)</dt><dd><%= @donation.publication_id || "—" %></dd>
+  <dt>Notes</dt><dd><%= simple_format @donation.notes %></dd>
+</dl>

@@ -1,0 +1,105 @@
+<% advanced_open = donation.source_id.present? || donation.payment_id.present? || donation.publication_id.present? %>
+
+<%= form_with model: donation, url: form_url, local: true, class: "donation-form" do |f| %>
+  <% if donation.errors.any? %>
+    <div class="donation-form__errors">
+      <h2><%= pluralize(donation.errors.count, "error") %> prevented this donation from being saved:</h2>
+      <ul>
+        <% donation.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <% if local_assigns[:show_donor_select] %>
+    <div class="field">
+      <%= f.label :donor_id, "Donor" %>
+      <%= f.collection_select :donor_id, @donors_for_select, :id,
+            ->(d) { donor_display_name(d) }, include_blank: true %>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :amount %>
+    <%= f.number_field :amount, step: 0.01, min: 0,
+          value: format("%.2f", donation.amount || 0) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :eligible_amount %>
+    <%= f.number_field :eligible_amount, step: 0.01, min: 0,
+          value: format("%.2f", donation.eligible_amount || 0) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :donation_date %>
+    <%= f.date_field :donation_date %>
+  </div>
+
+  <div class="field">
+    <%= f.label :receipt_date %>
+    <%= f.date_field :receipt_date %>
+  </div>
+
+  <div class="field">
+    <%= f.label :deposit_date %>
+    <%= f.date_field :deposit_date %>
+  </div>
+
+  <div class="field">
+    <%= f.label :c_receipt_num, "Receipt number (current)" %>
+    <%= f.number_field :c_receipt_num, step: 1 %>
+  </div>
+
+  <div class="field">
+    <%= f.label :receipt_num, "Receipt number" %>
+    <%= f.text_field :receipt_num %>
+  </div>
+
+  <div class="field">
+    <%= f.label :transaction_reference %>
+    <%= f.text_field :transaction_reference %>
+  </div>
+
+  <div class="field">
+    <%= f.label :message %>
+    <%= f.text_field :message %>
+  </div>
+
+  <fieldset class="donation-form__receipts">
+    <legend>Receipt state</legend>
+    <label><%= f.check_box :receipt_required %> Receipt required</label>
+    <label><%= f.check_box :receipt_pending %> Receipt pending</label>
+    <label><%= f.check_box :receipt_processed %> Receipt processed</label>
+    <label><%= f.check_box :receipt_replaced %> Receipt replaced</label>
+  </fieldset>
+
+  <div class="field">
+    <%= f.label :notes %>
+    <%= f.text_area :notes, rows: 4 %>
+  </div>
+
+  <details class="donation-form__advanced"<%= " open".html_safe if advanced_open %>>
+    <summary>Advanced (source / payment / publication IDs — raw, deferred FKs)</summary>
+
+    <div class="field">
+      <%= f.label :source_id, "Source ID (raw integer)" %>
+      <%= f.number_field :source_id, step: 1, min: 0 %>
+    </div>
+
+    <div class="field">
+      <%= f.label :payment_id, "Payment ID (raw integer)" %>
+      <%= f.number_field :payment_id, step: 1, min: 0 %>
+    </div>
+
+    <div class="field">
+      <%= f.label :publication_id, "Publication ID (raw integer)" %>
+      <%= f.number_field :publication_id, step: 1, min: 0 %>
+    </div>
+  </details>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

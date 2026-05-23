@@ -11,6 +11,11 @@
   <%= link_to "Back to donors", donors_path %>
 </p>
 
+<p>
+  <%= link_to "Donations for this donor", donor_donations_path(@donor) %> |
+  <%= link_to "Record a new donation", new_donor_donation_path(@donor) %>
+</p>
+
 <dl class="donor-detail">
   <dt>Courtesy title</dt><dd><%= @donor.courtesy_title.title %></dd>
   <dt>First name</dt><dd><%= @donor.first_name %></dd>

@@ -27,6 +27,16 @@ The authenticated root path SHALL render a menu page that lists the application'
 - **WHEN** a signed-in user views the menu page
 - **THEN** the page contains a control that signs the user out via `DELETE /session`
 
+### Requirement: Donations entry links to the donations index
+
+The authenticated menu page SHALL contain an entry whose visible text is `Donations` and SHALL render that entry as a hyperlink whose `href` is `/donations`.
+
+#### Scenario: Donations entry is a hyperlink to /donations
+
+- **WHEN** a signed-in user views the menu page
+- **THEN** the page contains an entry whose visible text is `Donations`
+- **AND** that entry is rendered as a hyperlink whose `href` is `/donations`
+
 ### Requirement: Build provenance footer
 
 Every page rendered with the application's default layout SHALL include a footer that identifies the running build. The footer SHALL display the abbreviated Git commit hash that the application was built from and SHALL provide a link to the GitHub repository.
