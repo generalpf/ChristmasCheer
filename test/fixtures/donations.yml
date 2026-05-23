@@ -1,0 +1,40 @@
+defaults_only:
+  id: 1
+  donor_id: 4   # jane_smith
+  amount: 25.00
+  eligible_amount: 25.00
+  donation_date: <%= Date.new(2025, 3, 15) %>
+
+bogus_deferred_fks:
+  id: 2
+  donor_id: 4   # jane_smith
+  amount: 100.00
+  eligible_amount: 100.00
+  source_id: 9999
+  payment_id: 9999
+  publication_id: 9999
+  donation_date: <%= Date.new(2025, 4, 1) %>
+
+awaiting_receipt:
+  id: 3
+  donor_id: 1   # acme_business
+  amount: 500.00
+  eligible_amount: 500.00
+  receipt_required: true
+  receipt_pending: true
+  donation_date: <%= Date.new(2025, 5, 10) %>
+  notes: Pending receipt printing
+
+processed_with_receipt:
+  id: 4
+  donor_id: 1   # acme_business
+  amount: 1000.00
+  eligible_amount: 1000.00
+  donation_date: <%= Date.new(2025, 1, 5) %>
+  receipt_date: <%= Date.new(2025, 1, 31) %>
+  deposit_date: <%= Date.new(2025, 1, 10) %>
+  receipt_required: true
+  receipt_processed: true
+  c_receipt_num: 1042
+  receipt_num: "R-2025-0042"
+  transaction_reference: "CHQ#4711"

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_05_16_225933) do
+ActiveRecord::Schema[8.1].define(version: 2026_05_23_134910) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -28,6 +28,31 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_16_225933) do
 
   create_table "courtesy_titles", force: :cascade do |t|
     t.string "title", null: false
+  end
+
+  create_table "donations", force: :cascade do |t|
+    t.decimal "amount", precision: 12, scale: 2, default: "0.0", null: false
+    t.integer "c_receipt_num"
+    t.datetime "created_at", null: false
+    t.date "deposit_date"
+    t.date "donation_date"
+    t.bigint "donor_id", null: false
+    t.decimal "eligible_amount", precision: 12, scale: 2, default: "0.0", null: false
+    t.string "message"
+    t.text "notes"
+    t.bigint "payment_id"
+    t.bigint "publication_id"
+    t.date "receipt_date"
+    t.string "receipt_num"
+    t.boolean "receipt_pending", default: false, null: false
+    t.boolean "receipt_processed", default: false, null: false
+    t.boolean "receipt_replaced", default: false, null: false
+    t.boolean "receipt_required", default: false, null: false
+    t.bigint "source_id"
+    t.string "transaction_reference"
+    t.datetime "updated_at", null: false
+    t.index ["donation_date"], name: "index_donations_on_donation_date"
+    t.index ["donor_id"], name: "index_donations_on_donor_id"
   end
 
   create_table "donors", force: :cascade do |t|
@@ -88,6 +113,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_16_225933) do
     t.index ["email_address"], name: "index_users_on_email_address", unique: true
   end
 
+  add_foreign_key "donations", "donors"
   add_foreign_key "donors", "affiliates"
   add_foreign_key "donors", "categories"
   add_foreign_key "donors", "city_towns"

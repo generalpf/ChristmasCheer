@@ -86,6 +86,25 @@ class DonorTest < ActiveSupport::TestCase
     assert donors(:jane_smith).reload.valid?
   end
 
+  test "donor.donations returns associated donations" do
+    donor = donors(:jane_smith)
+    assert_includes donor.donations, donations(:defaults_only)
+    assert_includes donor.donations, donations(:bogus_deferred_fks)
+  end
+
+  test "destroying a donor with donations raises DeleteRestrictionError" do
+    donor = donors(:jane_smith)
+    assert_raises(ActiveRecord::DeleteRestrictionError) { donor.destroy }
+    assert Donor.exists?(donor.id), "donor should not be deleted"
+  end
+
+  test "destroying a donor with no donations succeeds" do
+    donor = donors(:void_record)
+    assert_equal 0, donor.donations.count
+    assert donor.destroy
+    assert_not Donor.exists?(donor.id)
+  end
+
   private
     def build_donor(**attrs)
       Donor.new({

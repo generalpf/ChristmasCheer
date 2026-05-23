@@ -4,6 +4,8 @@ class Donor < ApplicationRecord
   belongs_to :courtesy_title
   belongs_to :city_town, optional: true
 
+  has_many :donations, dependent: :restrict_with_exception
+
   validate :requires_full_name_or_company
 
   private
