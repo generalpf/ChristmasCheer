@@ -18,16 +18,26 @@
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
 
-    <%# Includes all stylesheet files in app/assets/stylesheets %>
-    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%# Design system stylesheets, loaded in order: tokens → base → layout → components %>
+    <%= stylesheet_link_tag :tokens, :base, :layout, :components, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
+    <header class="app-header">
+      <div class="app-header__inner">
+        <%= link_to "Christmas Cheer", root_path, class: "app-header__title" %>
+      </div>
+    </header>
+
     <% flash.each do |level, message| %>
-      <p class="flash flash--<%= level %>"><%= message %></p>
+      <div class="flash flash--<%= level %>"><%= message %></div>
     <% end %>
-    <%= yield %>
+
+    <main class="container">
+      <%= yield %>
+    </main>
+
     <%= render "layouts/footer" %>
   </body>
 </html>

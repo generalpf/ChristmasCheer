@@ -1,0 +1,229 @@
+/*
+ * Reusable UI building blocks. New features should reuse these classes and
+ * the existing markup hooks (flash, main-menu, *-list, *-search, *-pagination,
+ * .field, .actions, .btn) rather than introducing ad-hoc equivalents.
+ */
+
+/* --- Buttons --- */
+.btn,
+button,
+input[type="submit"] {
+  display: inline-block;
+  font: inherit;
+  font-weight: var(--font-weight-bold);
+  line-height: 1.2;
+  cursor: pointer;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius);
+  border: 1px solid transparent;
+  text-decoration: none;
+}
+
+/* Default / primary: solid brand red with white text */
+.btn,
+button,
+input[type="submit"],
+.btn--primary {
+  background: var(--color-accent-strong);
+  color: var(--white);
+  border-color: var(--color-accent-strong);
+}
+
+.btn:hover,
+.btn:focus,
+button:hover,
+button:focus,
+input[type="submit"]:hover,
+input[type="submit"]:focus {
+  background: var(--brand-red-deep);
+  border-color: var(--brand-red-deep);
+  color: var(--white);
+  text-decoration: none;
+}
+
+/* Secondary / neutral: quiet outline */
+.btn--secondary {
+  background: var(--color-surface);
+  color: var(--color-accent);
+  border-color: var(--color-border);
+}
+
+.btn--secondary:hover,
+.btn--secondary:focus {
+  background: var(--cream);
+  color: var(--color-accent);
+  border-color: var(--brand-gold-muted);
+}
+
+/* --- Flash messages --- */
+.flash {
+  max-width: var(--container-max);
+  margin: var(--space-4) auto 0;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius);
+  border-left: 4px solid var(--color-border);
+}
+
+.flash--notice {
+  background: var(--color-notice-bg);
+  border-left-color: var(--color-notice-border);
+  color: var(--color-notice-text);
+}
+
+.flash--alert {
+  background: var(--color-alert-bg);
+  border-left-color: var(--color-alert-border);
+  color: var(--color-alert-text);
+}
+
+/* --- Main menu (home/show) --- */
+.signed-in-as {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-small);
+}
+
+.main-menu ul {
+  list-style: none;
+  margin: 0 0 var(--space-5);
+  padding: 0;
+  display: grid;
+  gap: var(--space-3);
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.menu-item {
+  display: block;
+}
+
+.menu-item__label {
+  display: block;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-left: 4px solid var(--brand-gold-muted);
+  border-radius: var(--radius);
+  padding: var(--space-4);
+  font-weight: var(--font-weight-bold);
+  box-shadow: var(--shadow-sm);
+}
+
+.menu-item__label:hover,
+.menu-item__label:focus {
+  text-decoration: none;
+  border-left-color: var(--color-accent-strong);
+  box-shadow: var(--shadow);
+}
+
+/* --- Index data tables --- */
+.donors-list,
+.donations-list {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-bottom: var(--space-5);
+}
+
+.donors-list tbody tr:hover,
+.donations-list tbody tr:hover {
+  background: var(--cream);
+}
+
+.donors-list tbody tr:last-child td,
+.donations-list tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* --- Search / filter controls --- */
+.donors-search,
+.donations-filter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: var(--space-3);
+  margin-bottom: var(--space-5);
+}
+
+.donors-search label,
+.donations-filter label {
+  display: block;
+  width: 100%;
+  margin-bottom: 0;
+}
+
+.donors-search input,
+.donors-search select,
+.donations-filter input,
+.donations-filter select {
+  width: auto;
+}
+
+/* --- Pagination --- */
+.donors-pagination,
+.donations-pagination {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  font-size: var(--font-size-small);
+}
+
+.donors-pagination .disabled,
+.donations-pagination .disabled {
+  color: var(--color-text-muted);
+}
+
+/* --- Forms --- */
+.field {
+  margin-bottom: var(--space-4);
+}
+
+.field label {
+  display: block;
+}
+
+.actions {
+  margin-top: var(--space-5);
+}
+
+/* Validation / error summary */
+.donor-form__errors,
+.donation-form__errors {
+  background: var(--color-alert-bg);
+  border-left: 4px solid var(--color-alert-border);
+  border-radius: var(--radius);
+  padding: var(--space-3) var(--space-4);
+  margin-bottom: var(--space-5);
+  color: var(--color-alert-text);
+}
+
+.donor-form__errors h2,
+.donation-form__errors h2 {
+  color: var(--color-alert-text);
+  font-size: var(--font-size-h3);
+  margin-bottom: var(--space-2);
+}
+
+.donation-form__receipts label {
+  display: block;
+  font-weight: 400;
+  margin-bottom: var(--space-1);
+}
+
+.donation-form__advanced {
+  margin-bottom: var(--space-4);
+}
+
+.donation-form__advanced summary {
+  cursor: pointer;
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-small);
+  color: var(--color-text-muted);
+}
+
+/* --- Detail pages (dl) --- */
+.donor-detail,
+.donation-detail {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: var(--space-4) var(--space-5);
+}

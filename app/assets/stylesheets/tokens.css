@@ -1,0 +1,75 @@
+/*
+ * Design tokens — the single source of truth for the Christmas Cheer UI.
+ *
+ * Palette sampled from the Brandon-Westman Christmas Cheer brand site.
+ * The aesthetic is deliberately restrained: a calm cream/white base with
+ * near-black text, and brand red/gold used only as accents.
+ *
+ * NEW FEATURES: reference these custom properties (var(--color-...), var(--space-...))
+ * instead of hard-coding colors, sizes, or spacing. Add a new token here rather
+ * than introducing a one-off value in a component.
+ */
+
+:root {
+  /* --- Brand palette (raw) --- */
+  --brand-red: #ED1C24;        /* bright Christmas red — solid-fill actions only */
+  --brand-red-deep: #822D23;   /* deep brick red — headers, emphasis, text-weight accent */
+  --brand-red-darkest: #411712;
+  --brand-gold: #FFCB05;       /* gold accent */
+  --brand-gold-muted: #B0A986; /* muted gold/khaki — quiet accent, borders */
+
+  --ink: #2F2F2E;              /* near-black body text */
+  --cream: #EAEAE8;           /* light cream/off-white surface */
+  --white: #FFFFFF;
+  --grey: #727272;            /* secondary text */
+  --grey-light: #8C8C8B;
+  --grey-border: #DBDBDB;     /* hairline borders / dividers */
+
+  /* --- Semantic aliases (use these in components) --- */
+  --color-text: var(--ink);
+  --color-text-muted: var(--grey);
+  --color-bg: var(--cream);            /* page background */
+  --color-surface: var(--white);       /* cards, tables, forms */
+  --color-border: var(--grey-border);
+  --color-accent: var(--brand-red-deep);   /* default accent (contrast-safe on light) */
+  --color-accent-strong: var(--brand-red); /* solid-fill buttons with white text */
+  --color-link: var(--brand-red-deep);
+  --color-link-hover: var(--brand-red);
+  --color-header-bg: var(--brand-red-deep);
+  --color-header-text: var(--white);
+  --color-accent-gold: var(--brand-gold-muted);
+
+  /* Feedback tones */
+  --color-notice-bg: #E7F1E3;
+  --color-notice-border: #5E8C4F;
+  --color-notice-text: #2F4A26;
+  --color-alert-bg: #FBE3E1;
+  --color-alert-border: var(--brand-red-deep);
+  --color-alert-text: var(--brand-red-darkest);
+
+  /* --- Typography --- */
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-size-base: 16px;
+  --line-height-base: 1.5;
+  --font-size-h1: 1.875rem;
+  --font-size-h2: 1.375rem;
+  --font-size-h3: 1.125rem;
+  --font-size-small: 0.875rem;
+  --font-weight-bold: 600;
+
+  /* --- Spacing scale --- */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-8: 3rem;
+
+  /* --- Surfaces --- */
+  --radius: 4px;
+  --radius-sm: 2px;
+  --shadow-sm: 0 1px 2px rgba(47, 47, 46, 0.08);
+  --shadow: 0 1px 3px rgba(47, 47, 46, 0.12);
+  --container-max: 960px;
+}

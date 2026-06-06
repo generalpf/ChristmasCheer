@@ -1,10 +1,17 @@
 /*
- * This is a manifest file that'll be compiled into application.css.
+ * Christmas Cheer design system — overview.
  *
- * With Propshaft, assets are served efficiently without preprocessing steps. You can still include
- * application-wide styles in this file, but keep in mind that CSS precedence will follow the standard
- * cascading order, meaning styles declared later in the document or manifest will override earlier ones,
- * depending on specificity.
+ * The stylesheets are loaded individually by the application layout via
+ * stylesheet_link_tag in this order (Propshaft does not concatenate or rewrite
+ * CSS @import references, so each file is linked explicitly):
  *
- * Consider organizing styles into separate files for maintainability.
+ *   1. tokens.css      — design tokens (CSS custom properties): the source of truth
+ *   2. base.css        — element/typography baseline for bare HTML
+ *   3. layout.css      — shared page chrome (header band, .container, footer)
+ *   4. components.css  — reusable building blocks (flash, menu, tables, forms, buttons,
+ *                        search, pagination)
+ *
+ * This file is intentionally not linked; it documents the system. New features
+ * should reference the tokens in tokens.css and reuse the classes in components.css
+ * rather than introducing ad-hoc styles.
  */

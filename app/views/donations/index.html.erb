@@ -33,9 +33,9 @@
 
 <p>
   <% if @donor %>
-    <%= link_to "Record a new donation", new_donor_donation_path(@donor) %>
+    <%= link_to "Record a new donation", new_donor_donation_path(@donor), class: "btn" %>
   <% else %>
-    <%= link_to "Record a new donation", new_donation_path %>
+    <%= link_to "Record a new donation", new_donation_path, class: "btn" %>
   <% end %>
 </p>
 

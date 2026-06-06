@@ -11,7 +11,7 @@
   <% end %>
 <% end %>
 
-<p><%= link_to "New donor", new_donor_path %></p>
+<p><%= link_to "New donor", new_donor_path, class: "btn" %></p>
 
 <% if @donors.empty? %>
   <p>No donors found<%= " matching #{@q.inspect}" if @q.present? %>.</p>
